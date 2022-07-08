@@ -1,4 +1,5 @@
-from gendiff import  open_file
+import open_file
 
 
-def generate_diff(path1,path2):
+def generate_diff(path1, path2):
+    pass
