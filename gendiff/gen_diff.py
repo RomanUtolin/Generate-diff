@@ -4,9 +4,9 @@ from gendiff import open_file
 def generate_diff(path1, path2):
     file1 = open_file.load_file(path1)
     file2 = open_file.load_file(path2)
-    set_keys = sorted(list(set(list(file1.keys()) + list(file2.keys()))))
     file1_keys = list(file1.keys())
     file2_keys = list(file2.keys())
+    set_keys = sorted(list(set(file1_keys + file2_keys)))
     result = dict()
     for i in set_keys:
         if i in file1_keys and i in file2_keys:
