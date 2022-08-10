@@ -22,4 +22,3 @@ def generate_diff(path1, path2):
     result.append('}')
 
     return ('\n'.join(result)).lower()
-
