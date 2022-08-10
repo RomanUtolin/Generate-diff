@@ -23,7 +23,3 @@ def generate_diff(path1, path2):
 
     return ('\n'.join(result)).lower()
 
-
-path1 = "./tests/fixtures/file1.json"
-path2 = "./tests/fixtures/file2.json"
-print(generate_diff(path1, path2))
