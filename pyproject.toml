@@ -11,8 +11,8 @@ packages = [
 gendiff = "gendiff.main:main"
 
 [tool.poetry.dependencies]
-python = "^3.9"
-pytest = "^7.1.2"
+python = "^3.7"
+pytest = "^7.0.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^5.0.4"
