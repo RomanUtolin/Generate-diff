@@ -1,8 +1,10 @@
 import argparse
+from gendiff import stylish
 from gendiff.gen_diff import generate_diff
 
 
 def main():
+    formatter = stylish.stylish
     parser = argparse.ArgumentParser(prog='gendiff',
                                      usage='%(prog)s [-h] [-f FORMAT]'
                                            ' first_file second_file',
@@ -16,7 +18,7 @@ def main():
                         )
 
     args = parser.parse_args()
-    print(generate_diff(args.first_file, args.second_file))
+    print(generate_diff(args.first_file, args.second_file, formatter))
 
 
 if __name__ == '__main__':
