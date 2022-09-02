@@ -6,7 +6,7 @@ def test_diff_json():
                            "./gendiff/tests/fixtures/file2.json")
     with open("./gendiff/tests/fixtures/test_diff.txt") as f:
         right = f.read()
-    assert right == result
+    assert result == right
 
 
 def test_deep_dif_json():
@@ -14,7 +14,7 @@ def test_deep_dif_json():
                            "./gendiff/tests/fixtures/hard2.json")
     with open("./gendiff/tests/fixtures/test_deep_diff.txt") as f:
         right = f.read()
-    assert right.replace(" ", "") == result.replace(" ", "")
+    assert result == right
 
 
 def test_diff_yaml():
@@ -22,7 +22,7 @@ def test_diff_yaml():
                            "./gendiff/tests/fixtures/file4.yml")
     with open("./gendiff/tests/fixtures/test_diff.txt") as f:
         right = f.read()
-    assert right == result
+    assert result == right
 
 
 def test_deep_dif_yaml():
@@ -30,4 +30,4 @@ def test_deep_dif_yaml():
                            "./gendiff/tests/fixtures/yaml2.yaml")
     with open("./gendiff/tests/fixtures/test_deep_diff.txt") as f:
         right = f.read()
-    assert right.replace(" ", "") == result.replace(" ", "")
+    assert result == right

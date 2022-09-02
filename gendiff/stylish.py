@@ -14,12 +14,10 @@ def stylish(value):
         for key, val in current_value.items():
             if isinstance(val, list):
                 for i, v in enumerate(val):
-                    if v is True:
-                        val[i] = 'true'
+                    if v is True or v is False:
+                        val[i] = str(val[i]).lower()
                     elif v is None:
                         val[i] = 'null'
-                    elif v is False:
-                        val[i] = 'false'
                 if val[0] == 'nested' or val[0] == 'unc':
                     lines.append(f'{deep_indent}{key}:'
                                  f' {walk(val[1],deep_indent_size)}')
