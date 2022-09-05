@@ -4,10 +4,6 @@ from gendiff import open_file, stylish
 
 
 def search_diff(dict_1, dict_2):
-    def walk(val_1, val_2):
-        if isinstance(val_1, dict) and isinstance(val_2, dict):
-            return True
-
     diff = dict()
     dict_1_keys = set(dict_1.keys())
     dict_2_keys = set(dict_2.keys())
@@ -15,7 +11,7 @@ def search_diff(dict_1, dict_2):
     for key in intersection_keys:
         value_1 = dict_1[key]
         value_2 = dict_2[key]
-        if walk(value_1, value_2):
+        if isinstance(value_1, dict) and isinstance(value_2, dict):
             diff[key] = ['nested', search_diff(value_1, value_2)]
         elif value_1 == value_2:
             diff[key] = ['unc', value_1]
