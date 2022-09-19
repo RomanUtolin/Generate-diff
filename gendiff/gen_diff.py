@@ -40,5 +40,5 @@ def search_diff(dict_1, dict_2):
 def generate_diff(path_1, path_2, formatter=stylish.stylish):
     dict_1 = open_file.load_file(path_1)
     dict_2 = open_file.load_file(path_2)
-    diff = formatter(search_diff(dict_1, dict_2))
-    return diff
+    diff = search_diff(dict_1, dict_2)
+    return formatter(diff)
