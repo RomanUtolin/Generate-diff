@@ -6,4 +6,4 @@
 
 Compares two configuration files and shows a difference.
 
-[Demo](https://asciinema.org/a/522350.svg)
+[Demo](https://asciinema.org/a/522350)
