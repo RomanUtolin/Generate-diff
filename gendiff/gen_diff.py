@@ -1,10 +1,20 @@
 from collections import OrderedDict
 
-from gendiff import open_file, stylish
+from gendiff import open_file
+
+
+def format_bool_val(current_dict):
+    for key, val in current_dict.items():
+        if val is True or val is False:
+            current_dict[key] = str(val).lower()
+        elif val is None:
+            current_dict[key] = 'null'
 
 
 def search_diff(dict_1, dict_2):
     diff = dict()
+    format_bool_val(dict_1)
+    format_bool_val(dict_2)
     dict_1_keys = set(dict_1.keys())
     dict_2_keys = set(dict_2.keys())
     intersection_keys = (dict_1_keys.intersection(dict_2_keys))
@@ -26,7 +36,7 @@ def search_diff(dict_1, dict_2):
     return OrderedDict(sorted(diff.items()))
 
 
-def generate_diff(path_1, path_2, formatter=stylish.stylish):
+def generate_diff(path_1, path_2, formatter):
     dict_1 = open_file.load_file(path_1)
     dict_2 = open_file.load_file(path_2)
     diff = formatter(search_diff(dict_1, dict_2))

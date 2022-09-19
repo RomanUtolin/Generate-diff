@@ -8,37 +8,36 @@ NEW_REPLACER = {
 }
 
 
-def format_bool_val(val):
-    for i, v in enumerate(val):
-        if v is True or v is False:
-            val[i] = str(val[i]).lower()
-        elif v is None:
-            val[i] = 'null'
-    return val
+def value_add(list_, key, val, depth):
+    list_.append(f'{key}: {stylish(val, depth)}')
+    return list_
 
 
-def stylish(current_value, depth=0):
-    if not isinstance(current_value, dict):
-        return str(current_value)
+def stylish(value, depth=0):
+    if not isinstance(value, dict):
+        return value
     replacer = ' '
     spaces_count = 4
     deep_indent_size = depth + spaces_count
     deep_indent = replacer * deep_indent_size
     lines = []
-    for key, val in current_value.items():
+    for key, val in value.items():
         if isinstance(val, list):
-            format_bool_val(val)
+            new_indent = deep_indent[2:]
             if 'chang' in val:
-                add_key = f'{deep_indent[2:]}- {key}'
-                lines.append(f'{add_key}: {stylish(val[1], deep_indent_size)}')
-                add_key = f'{deep_indent[2:]}+ {key}'
-                val = val[2]
+                add_key = f'{new_indent}{NEW_REPLACER["rm"]}{key}'
+                add_val = val[1]
+                value_add(lines, add_key, add_val, deep_indent_size)
+                add_key = f'{new_indent}{NEW_REPLACER["add"]}{key}'
+                add_val = val[2]
             else:
-                add_key = f'{deep_indent[2:]}{NEW_REPLACER[val[0]]}{key}'
-                val = val[1]
-            lines.append(f'{add_key}: {stylish(val, deep_indent_size)}')
+                new_replacer = NEW_REPLACER[val[0]]
+                add_key = f'{new_indent}{new_replacer}{key}'
+                add_val = val[1]
+            value_add(lines, add_key, add_val, deep_indent_size)
         else:
-            lines.append(f'{deep_indent}{key}:'
-                         f' {stylish(val, deep_indent_size)}')
+            add_key = f'{deep_indent}{key}'
+            add_val = val
+            value_add(lines, add_key, add_val, deep_indent_size)
     result = itertools.chain("{", lines, [replacer * depth + "}"])
     return '\n'.join(result)
