@@ -1,1 +1,1 @@
-from gen_diff import generate_diff
+import gen_diff
