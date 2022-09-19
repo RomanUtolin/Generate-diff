@@ -1,6 +1,6 @@
 import argparse
 from gendiff import stylish, plain, json
-from gendiff.gen_diff import generate_diff
+from gendiff.generate_diff import generate_diff
 
 
 def main():
