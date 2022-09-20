@@ -22,7 +22,7 @@ def format_val(value):
     for v in value:
         if isinstance(v, dict):
             v = '[complex value]'
-        elif v == 'true' or v == 'false' or v == 'null':
+        elif v == 'true' or v == 'false' or v == 'null' or isinstance(v, int):
             v = f"{v}"
         else:
             v = f"'{v}'"
