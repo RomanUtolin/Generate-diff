@@ -9,11 +9,11 @@ NEW_REPLACER = {
 
 
 def value_add(list_, key, val, depth):
-    list_.append(f'{key}: {stylish(val, depth)}')
+    list_.append(f'{key}: {formatter(val, depth)}')
     return list_
 
 
-def stylish(value, depth=0):
+def formatter(value, depth=0):
     if not isinstance(value, dict):
         return value
     replacer = ' '

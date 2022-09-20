@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 from gendiff import open_file
-from gendiff import stylish
+from gendiff.formatter import stylish
 
 
 def format_bool_val(current_dict):
@@ -37,8 +37,8 @@ def search_diff(dict_1, dict_2):
     return OrderedDict(sorted(diff.items()))
 
 
-def generate_diff(path_1, path_2, formatter=stylish.stylish):
+def generate_diff(path_1, path_2, formatter=stylish):
     dict_1 = open_file.load_file(path_1)
     dict_2 = open_file.load_file(path_2)
     diff = search_diff(dict_1, dict_2)
-    return formatter(diff)
+    return formatter.formatter(diff)

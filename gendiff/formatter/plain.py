@@ -1,9 +1,9 @@
-def plain(value, path=''):
+def formatter(value, path=''):
     lines = []
     for key, val in value.items():
         new_path = path + f'{key}'
         if 'nested' in val:
-            add = (plain(val[1], path + f'{key}.'))
+            add = (formatter(val[1], path + f'{key}.'))
         elif 'chang' in val:
             add = f"Property '{new_path}' was updated. From " \
                   f"{format_val(val[1:])} to {format_val(val[2:])}"

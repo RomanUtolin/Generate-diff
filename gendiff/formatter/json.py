@@ -1,5 +1,5 @@
 import json
 
 
-def json_(item):
+def formatter(item):
     return json.dumps(item)
