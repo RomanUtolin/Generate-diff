@@ -37,8 +37,8 @@ def search_diff(dict_1, dict_2):
     return OrderedDict(sorted(diff.items()))
 
 
-def generate_diff(path_1, path_2, formatter=stylish):
+def generate_diff(path_1, path_2, format_=stylish):
     dict_1 = open_file.load_file(path_1)
     dict_2 = open_file.load_file(path_2)
     diff = search_diff(dict_1, dict_2)
-    return formatter.formatter(diff)
+    return format_.formatter(diff)
