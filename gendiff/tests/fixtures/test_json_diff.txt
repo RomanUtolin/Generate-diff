@@ -1,1 +1,0 @@
-{"follow": ["REMOVED", false], "host": ["UNCHANGED", "hexlet.io"], "proxy": ["REMOVED", "123.234.53.22"], "timeout": ["CHANGED", 50, 20], "verbose": ["ADDED", true]}
