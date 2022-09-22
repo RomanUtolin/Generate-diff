@@ -1,1 +1,1 @@
-{"follow": ["rm", "false"], "host": ["unc", "hexlet.io"], "proxy": ["rm", "123.234.53.22"], "timeout": ["chang", 50, 20], "verbose": ["add", "true"]}
+{"follow": ["REMOVED", false], "host": ["UNCHANGED", "hexlet.io"], "proxy": ["REMOVED", "123.234.53.22"], "timeout": ["CHANGED", 50, 20], "verbose": ["ADDED", true]}

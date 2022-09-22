@@ -1,16 +1,20 @@
-def formatter(value, path=''):
+def formatter(diff):
+    return do_format(diff)
+
+
+def do_format(diff, path=''):
     lines = []
-    for key, val in value.items():
+    for key, val in diff.items():
         new_path = path + f'{key}'
-        if 'nested' in val:
-            add = (formatter(val[1], path + f'{key}.'))
-        elif 'chang' in val:
+        if 'NESTED' in val:
+            add = (do_format(val[1], path + f'{key}.'))
+        elif 'CHANGED' in val:
             add = f"Property '{new_path}' was updated. From " \
                   f"{format_val(val[1:])} to {format_val(val[2:])}"
-        elif 'add' in val:
+        elif 'ADDED' in val:
             add = f"Property '{new_path}' was added with value: " \
                   f"{format_val(val[1:])}"
-        elif 'rm' in val:
+        elif 'REMOVED' in val:
             add = f"Property '{new_path}' was removed"
         else:
             continue
@@ -22,8 +26,12 @@ def format_val(value):
     for v in value:
         if isinstance(v, dict):
             v = '[complex value]'
-        elif v == 'true' or v == 'false' or v == 'null' or isinstance(v, int):
-            v = f"{v}"
+        elif v is True or v is False or v == 'true' or v == 'false':
+            v = f'{str(v).lower()}'
+        elif v is None or v == 'null':
+            v = 'null'
+        elif isinstance(v, int):
+            v = f'{v}'
         else:
             v = f"'{v}'"
         return v

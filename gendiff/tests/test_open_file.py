@@ -1,8 +1,8 @@
-from gendiff import open_file
+from gendiff import loader
 
 
-json = open_file.load_file("./gendiff/tests/fixtures/file1.json")
-yaml = open_file.load_file("./gendiff/tests/fixtures/file3.yml")
+json = loader.load_file("./gendiff/tests/fixtures/file1.json")
+yaml = loader.load_file("./gendiff/tests/fixtures/file3.yml")
 right_dict = {
     "host": "hexlet.io",
     "timeout": 50,

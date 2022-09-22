@@ -19,3 +19,6 @@ lint:
 
 gendif:
 	poetry run gendiff -h
+
+pytest:
+	poetry run pytest
