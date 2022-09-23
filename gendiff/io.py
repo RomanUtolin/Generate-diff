@@ -1,8 +1,10 @@
-import json
-import yaml
+def read_file(item):
+    return open(item)
 
 
-def open_file(file, file_format):
-    if file_format == '.yaml':
-        return yaml.safe_load(file)
-    return json.load(file)
+def get_format(item):
+    if item.endswith('.yml') or item.endswith('.yaml'):
+        file_format = 'yaml'
+    else:
+        file_format = 'json'
+    return file_format

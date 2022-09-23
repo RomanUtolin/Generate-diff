@@ -2,11 +2,11 @@ import itertools
 from gendiff.constants import (NESTED, UNCHANGED, ADDED, REMOVED, CHANGED)
 
 NEW_REPLACER = {
-    'NESTED': NESTED,
-    'UNCHANGED': UNCHANGED,
-    'ADDED': ADDED,
-    'REMOVED': REMOVED,
-    'CHANGED': CHANGED
+    NESTED: '  ',
+    UNCHANGED: '  ',
+    ADDED: '+ ',
+    REMOVED: '- ',
+    CHANGED: ['- ', '+ ']
 }
 
 
@@ -40,11 +40,11 @@ def do_format(diff, depth=0):
             state = val[0]
             format_bool_val(val)
             new_indent = deep_indent[2:]
-            if state == 'CHANGED':
-                add_key = f'{new_indent}{NEW_REPLACER["CHANGED"][0]}{key}'
+            if state == CHANGED:
+                add_key = f'{new_indent}{NEW_REPLACER[CHANGED][0]}{key}'
                 add_val = val[1]
                 value_add(lines, add_key, add_val, deep_indent_size)
-                add_key = f'{new_indent}{NEW_REPLACER["CHANGED"][1]}{key}'
+                add_key = f'{new_indent}{NEW_REPLACER[CHANGED][1]}{key}'
                 add_val = val[2]
             else:
                 new_replacer = NEW_REPLACER[state]

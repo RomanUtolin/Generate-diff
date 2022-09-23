@@ -1,20 +1,23 @@
+from gendiff.constants import (NESTED, ADDED, REMOVED, CHANGED)
+
+
 def formatter(diff):
-    return do_format(diff)
+    return build_plain(diff)
 
 
-def do_format(diff, path=''):
+def build_plain(diff, path=''):
     lines = []
     for key, val in diff.items():
         new_path = path + f'{key}'
-        if 'NESTED' in val:
-            add = (do_format(val[1], path + f'{key}.'))
-        elif 'CHANGED' in val:
+        if NESTED in val:
+            add = (build_plain(val[1], path + f'{key}.'))
+        elif CHANGED in val:
             add = f"Property '{new_path}' was updated. From " \
                   f"{format_val(val[1:])} to {format_val(val[2:])}"
-        elif 'ADDED' in val:
+        elif ADDED in val:
             add = f"Property '{new_path}' was added with value: " \
                   f"{format_val(val[1:])}"
-        elif 'REMOVED' in val:
+        elif REMOVED in val:
             add = f"Property '{new_path}' was removed"
         else:
             continue
